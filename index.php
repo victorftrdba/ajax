@@ -1,3 +1,16 @@
+<?php
+session_start();
+if(!$_SESSION) {
+    header("Location: login.php");
+}
+if($_SESSION) {
+    echo 'Bem-vindo <b>'.$_SESSION['user'].'</b>!';
+} else {
+    header("Location: login.php");
+}
+session_regenerate_id();
+?>
+
 <!DOCTYPE html>
 <html>
 

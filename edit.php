@@ -1,3 +1,16 @@
+<?php
+session_start();
+if(!$_SESSION) {
+    header("Location: login.php");
+}
+if($_SESSION) {
+    echo 'Bem-vindo <b>'.$_SESSION['user'].'</b>!';
+} else {
+    header("Location: login.php");
+}
+session_regenerate_id();
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -18,8 +31,8 @@
             <div class="col-12 pt-5">
                 <form id="userFormUpdate" method="POST" class="d-flex flex-column">
                     <label for="title"> ID
-                        <input type="text" value="<?php echo $_GET['id'] ?>" name="id" id="id" class="form-control"
-                            required />
+                        <input type="text" readonly value="<?php echo $_GET['id'] ?>" name="id" id="id"
+                            class="form-control" required />
                     </label>
                     <label for="title"> Título
                         <input type="text" name="title" value="<?php echo $_GET['title'] ?>" id="title"

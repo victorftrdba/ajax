@@ -1,3 +1,11 @@
+<?php
+session_start();
+if(!$_SESSION) {
+    header("Location: login.php");
+}
+session_regenerate_id();
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -26,9 +34,13 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
+                <?php 
+                    echo"Bem-vindo <b>" . $_SESSION['user'] . "</b>!";
+                ?>
+                <a href="logout.php">Sair</a>
                 <p class="fw-bold fs-1">Lista</p>
                 <?php foreach($result as $items) { ?>
-
+                <hr>
                 <ul class="list-unstyled" id="lista">
                     <li class="mb-4"><strong>Título: </strong><?php echo $items->title ?></li>
                     <li class="mb-4"><strong>Descrição: </strong><?php echo $items->body ?></li>
